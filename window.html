@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @font-face {
+            font-family: mainFont;
+            src: url("fonts/karnakcondensed.woff");
+        }
+        @font-face {
+            font-family: wordFont;
+            src: url("fonts/franklin-normal-700.woff");
+        }
+        @keyframes titleAnim {
+            0% {
+                top: 40px;
+                font-size: 35px;
+                opacity: 1;
+            }
+            40% {
+                top: 40px;
+                font-size: 35px;
+                opacity: 1;
+            }
+            70% {
+                top: 40px;
+                font-size: 35px;
+                opacity: 0;
+            }
+            71% {
+                top: 0px;
+                font-size: 15px;
+                opacity: 0;
+            }
+            100% {
+                top: 0px;
+                font-size: 15px;
+                opacity: 1;
+            }
+        }
+        #container {
+            width: 200px;
+            height: 200px;
+            background-color: #121213;
+            border: solid 2px white;
+            border-radius: 7px;
+            font-family: mainFont;
+            color: white;
+        }
+        #modeContainer {
+            text-align: center;
+            display: none;
+        }
+        #notFound {
+            display: none;
+        }
+        #wordGuess {
+            display: none;
+        }
+        button {
+            font-family: mainFont;
+            transition-duration: 0.6s;
+            border-color: white;
+            position: relative;
+            background-color: #262626;
+            color: white;
+            box-shadow: none;
+            outline: none;
+        }
+        button:hover {
+            border-radius: 6px;
+        }
+        #creditContainer {
+            display: none;
+        }
+        #notFoundText {
+            font-family: mainFont;
+            font-size: 23px;
+            text-align: center;
+            margin-top: 20%;
+        }
+        .smallTitle {
+            font-family: mainFont;
+            font-size: 10px;
+            text-align: center;
+            margin-top: 35%;
+        }
+        .letterBox {
+            width: 30px;
+            height: 30px;
+            border: solid 1px white;
+            position: absolute;
+        }
+        .word {
+            font-family: wordFont;
+            position: relative;
+            top: -80%;
+            left: 0%;
+            text-align: center;
+            font-size: 25px;
+        }
+        #goToWordle {
+            position: relative;
+            top: -20px;
+            left: 66px;
+        }
+        #name {
+            font-family: mainFont;
+            font-size: 15px;
+            position: relative;
+            text-align: center;
+            left: 0px;
+        }
+        .anim {
+            animation: 2.5s ease-out 0s 1 titleAnim;
+        }
+        #startButton {
+            position: relative;
+            top: 40px;
+        }
+        #next {
+            position: relative;
+            left: 80px;
+            margin-top: 90px;
+        }
+        #autofill {
+            position: relative;
+            left: -127px;
+            margin-top: 3px;
+            margin-left: 100%;
+        }
+        #info {
+            position: absolute;
+            top: 180px;
+            left: 165px;
+            display: none;
+        }
+        #creditInfoText {
+            text-align: center;
+            font-size: 25px;
+            margin-top: 10px;
+        }
+        #byText {
+            text-align: center;
+            font-size: 10px;
+            margin-top: -30px;
+        }
+        #byPara {
+            font-family: wordFont;
+            text-align: center;
+            font-size: 10px;
+            margin-top: 10px;
+        }
+    </style>
+
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="content.js" type="application/javascript"></script>
+</head>
+<body id="container">
+    <h3 id="name" class="anim">WordleHelper</h3>
+    <button id="info">Info</button>
+    <div id="modeContainer">
+        <button id="startButton">Start</button>
+    </div>
+    <div id="creditContainer">
+        <h3 id="creditInfoText">Credits / Info</h3>
+        <h3 id="byText">By Antoine Phan & Owen Boseley</h3>
+        <p id="byPara">A fun little extension to help you tackle the day's wordle and improve your vocabulary! Click go and witness our algorithm produce a 5-letter to aid you whenever you're in a rut.</p>
+    </div>
+    <div id="notFound">
+        <h4 id="notFoundText">Wordle Not Found :/</h4>
+        <button class="centered" type="button" id="goToWordle">Go There</button>
+    </div>
+    <div id="wordGuess">
+        <div class="letterBox" style="left: 23px;top: 100px;">
+            <h3 class="word">V</h3>
+        </div>
+        <div class="letterBox" style="left: 58px;top: 100px;">
+            <h3 class="word">I</h3>
+        </div>
+        <div class="letterBox" style="left: 93px;top: 100px;">
+            <h3 class="word">V</h3>
+        </div>
+        <div class="letterBox" style="left: 128px;top: 100px;">
+            <h3 class="word">I</h3>
+        </div>
+        <div class="letterBox" style="left: 163px;top: 100px;">
+            <h3 class="word">D</h3>
+        </div>
+        <button id='next'>Next</button>
+    </div>
+</body>
+</html>
