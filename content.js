@@ -92,53 +92,56 @@ class Helper {
     }
 
     eliminate() {
-        var index;
-
-        for (var character, k = 0, i = this.graylist, j = i.length; k < j; k += 1)
+        for (let character in this.graylist)
         {
-            character = i[k];
-
-            for (var a_guess, n = 0; n < answerList.length; n += 1) {
-                a_guess = answerList[n];
-                if (a_guess.includes(character)) {
+            let i = 0;
+            while(i < answerList.length)
+            {
+                let a_guess = answerList[i];
+                if (a_guess.includes(character))
+                {
                     answerList.splice(answerList.indexOf(a_guess),1);
-                    continue;
+                    i = i;
                 }
+                else
+                    i++;
             }
         }
 
-        for (var color_letter, k = 0, i = this.colorlist, j = i.length; k < j; k += 1)
+        for (let color_letter in this.colorlist)
         {
-            color_letter = i[k];
-            index = Number.parseInt(color_letter.index);
+            let index = Number.parseInt(color_letter.index);
 
-            for (var a_guess, n = 0; n < answerList.length; n += 1) {
-                a_guess = answerList[n];
+            for (let a_guess in answerList)
+            {
                 if (color_letter.color === "G") {
-                    if (a_guess[index] === color_letter.letter) {
-                        if (!this.suggestionlist.includes(a_guess)) {
+                    if (a_guess[index] === color_letter.letter)
+                    {
+                        if (!this.suggestionlist.includes(a_guess))
                             this.suggestionlist.push(a_guess);
-                        }
                     }
                 }
-
-                if (color_letter.color === "Y" && a_guess[index] !== color_letter.letter) {
-                    this.suggestionlist.push(a_guess)
-
-                }
+                if (color_letter.color === "Y" && a_guess[index] !== color_letter.letter)
+                    this.suggestionlist.push(a_guess);
             }
         }
 
         if (this.suggestionlist.length > 0) {
-            for (var green, k = 0, i = this.colorlist, j = i.length; k < j; k += 1) {
-                green = i[k];
+            for (green in this.colorlist) {
+                if (green.color === "G")
+                {
+                    let i = 0;
+                    while(i < this.suggestionlist.length)
+                    {
+                        let green_index = Number.parseInt(green.index);
+                        let suggest = this.suggestionlist[i];
 
-                for (var suggest, n = 0; n < this.suggestionlist.length; n += 1) {
-                    suggest = this.suggestionlist[n];
-                    index = Number.parseInt(green.index);
-                    if (green.color === "G" && suggest[index] !== green.letter) {
-                        this.suggestionlist.splice(this.suggestionlist.indexOf(suggest),1);
-                        continue;
+                        if (suggest[green_index] !== green.letter) {
+                            this.suggestionlist.splice(this.suggestionlist.indexOf(suggest),1);
+                            i = i;
+                        }
+                        else
+                            i++;
                     }
                 }
             }
